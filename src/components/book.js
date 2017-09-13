@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 
 class Book extends Component {
 
-    constructor() { }
+    // constructor() { }
 
-    state = { }
+    // state = { }
 
     render () {
+      //console.log(this.props);
         return (
             <div className="book">
             <div className="book-top">

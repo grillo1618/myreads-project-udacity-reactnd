@@ -1,14 +1,27 @@
 import React, { Component } from 'react'; 
-import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from '../BooksAPI';
+
+import { Link } from 'react-router-dom';
+
+import Bookshelf from './bookshelf';
 
 class Library extends Component {
 
-    constructor() {
-
+    state = {
+        libraryData: [],
+        bookshelves: ['Currently Reading', 'Want to Read', 'Read'],
+        shelves: ['currentlyReading', 'wantToRead', 'read']  
     }
 
-    state = {
+    componentDidMount() {
+        this.onGetAllBooks();
+    }
 
+    onGetAllBooks() {
+        //Get books and then set state.
+        BooksAPI.getAll().then((results) => {
+            this.setState({ libraryData: results });
+        });
     }
 
     render() {
@@ -17,17 +30,22 @@ class Library extends Component {
             <div className="list-books-title">
                 <h1>MyReads</h1>
             </div>
-            <div className="list-books-content">
-                Bookshelves here please
+            <div>
+                <div className="list-books-content">
+                    {this.state.bookshelves.map( (shelfName, index) => (
+                        <Bookshelf key={ shelfName } shelfName={ shelfName } 
+                        Books={this.state.libraryData.filter( book => 
+                        book.shelf === this.state.shelves[index])}
+                        updateLibrary={ this.onGetAllBooks }/>
+                         ))}
+                </div>
             </div>
             <div className="open-search">
-              <a onClick={() => this.setState({ showSearchPage: true })}>Add a book</a>
+                <Link to="/search">Add a book</Link>
             </div>
         </div>
-        ) // End render return.
-
+        )// End render return.
     }// End render() method.
-
 }// End Library class definition.
 
 export default Library;
