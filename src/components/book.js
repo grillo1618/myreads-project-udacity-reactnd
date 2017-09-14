@@ -1,19 +1,33 @@
 import React, { Component } from 'react';
 
+/**
+* @description Represents a book and is used to represent a book's data for UI.
+* @constructor
+* @param {object} props - Props from book's component, passed through attribute.
+*/
 class Book extends Component {
 
     constructor(props) {
       super(props);
       this.state = {bookShelf: this.props.bookShelf};
-     }
-
-    onHandleBookChange = (event) => {
-      const CHANGING_SHELF = event.target.value;
-      this.props.updateBook(this.props.id, CHANGING_SHELF);
-      this.setState({bookShelf: CHANGING_SHELF});
     }
 
-    updateBook = event => {
+    // /**
+    // * @description Represents a book
+    // * @param {object} title - The title of the book
+    // */
+    // onHandleBookChange = (event) => {
+    //   const CHANGING_SHELF = event.target.value;
+    //   this.props.updateBook(this.props.id, CHANGING_SHELF);
+    //   this.setState({bookShelf: CHANGING_SHELF});
+    // }
+
+     /**
+    * @description Represents a book
+    * @param {object} event - This, the event that has the value of the change
+    * from the search input.
+    */
+    updateBook=event=>{
       const NEW_SHELF = event.target.value;
       this.props.updateBook(this.props.book, NEW_SHELF);
       this.setState({bookShelf: NEW_SHELF});
@@ -38,7 +52,7 @@ class Book extends Component {
                 </select>
               </div>
             </div>
-            <div className="book-title">{ this.props.book.title }</div>
+            <div className="book-title">{this.props.book.title}</div>
             {/* <div className="book-authors">{ this.props.book.authors.map( (author) => (
               <li key={ author }>{ author }</li>
               ))}
@@ -48,4 +62,5 @@ class Book extends Component {
     } // End render() method.
 } // End Book class definition.
 
+//Export:
 export default Book;
