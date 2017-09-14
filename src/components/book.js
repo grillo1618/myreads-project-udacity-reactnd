@@ -12,16 +12,6 @@ class Book extends Component {
       this.state = {bookShelf: this.props.bookShelf};
     }
 
-    // /**
-    // * @description Represents a book
-    // * @param {object} title - The title of the book
-    // */
-    // onHandleBookChange = (event) => {
-    //   const CHANGING_SHELF = event.target.value;
-    //   this.props.updateBook(this.props.id, CHANGING_SHELF);
-    //   this.setState({bookShelf: CHANGING_SHELF});
-    // }
-
      /**
     * @description Represents a book
     * @param {object} event - This, the event that has the value of the change
@@ -53,14 +43,14 @@ class Book extends Component {
               </div>
             </div>
             <div className="book-title">{this.props.book.title}</div>
-            {/* <div className="book-authors">{ this.props.book.authors.map( (author) => (
-              <li key={ author }>{ author }</li>
-              ))}
-            </div> */}
+            <div className="book-authors">{this.props.book.authors.map((author)=>(
+              <li key={author}>{author}</li>)
+              )}
+            </div>
           </div>
-        ) // render() return.
-    } // End render() method.
-} // End Book class definition.
+        )// render() return.
+    }// End render() method.
+}// End Book class definition.
 
 //Export:
 export default Book;

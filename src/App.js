@@ -11,8 +11,6 @@ import Searcher from './components/searcher';
 */
 class BooksApp extends Component {
 
-  state = { }
-
   render() {
     return (
       <BrowserRouter>

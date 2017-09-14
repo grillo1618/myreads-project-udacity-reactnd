@@ -18,7 +18,7 @@ class Searcher extends Component {
     * @param {string} query - Input from user in the searchbar.
     */
     searchBooks=(query)=>{
-        const searchQuery = query.trim();
+        const searchQuery=query.trim();
         if(searchQuery) {
             BooksAPI.search(searchQuery, 20).then((result)=>{
                 this.setState({booksData: result});
