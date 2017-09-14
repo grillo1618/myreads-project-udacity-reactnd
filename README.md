@@ -2,8 +2,6 @@
     <img src="https://aimeos.org/fileadmin/template/icons/logo.png" alt="readme logo" title="Project I: My Reads" align="right" height="60" />
 </a>
 
-*
-
 # My Reads React Web App (React's Nanodegree):
 
 The repository contains within the myreads project from udacity's nanodegree program
@@ -16,14 +14,14 @@ the ability to search books online and add them to the library.
 - [Getting Started](#getting-started)
     - [prerequisites](#prerequisites)
     - [installing](#installing)
-- [Running Tests](#running-tests)
+- [Running Tests](#Running the tests)
     - [Tests](#tests)
-    - [Coding Style Used](#coding-style-used)
+    - [Coding Style Used](#And coding style tests)
 - [Contributing](#contributing)
 - [Versioning](#versioning)
 - [Authors](#authors)
 - [Licence](#licence)
-- [Acknowledgements](#acknowledgements)
+- [Acknowledgements](#Acknowledgments)
 
 
 ## Getting Started
