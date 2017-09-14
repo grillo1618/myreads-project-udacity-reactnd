@@ -9,7 +9,10 @@ class Searcher extends Component {
 
     // }
 
-    // state = { }
+    state = { 
+        query: '',
+        booksData: []
+     }
 
     render() {
 
@@ -30,7 +33,7 @@ class Searcher extends Component {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    
+
                 </ol>
             </div>
         </div> 

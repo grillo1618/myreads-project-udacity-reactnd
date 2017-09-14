@@ -17,10 +17,10 @@ class Library extends Component {
         this.onGetAllBooks();
     }
 
-    onGetAllBooks() {
-        //Get books and then set state.
+    onGetAllBooks = () => {
         BooksAPI.getAll().then((results) => {
             this.setState({ libraryData: results });
+            console.log(results);
         });
     }
 
