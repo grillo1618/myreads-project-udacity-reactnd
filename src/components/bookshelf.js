@@ -18,7 +18,7 @@ class Bookshelf extends Component {
     updateBookLibrary=(bookId, shelfName) => {
         console.log(bookId, shelfName)
         BooksAPI.update(bookId, shelfName).then((data)=> {
-            console.log(data);
+            //console.log(data);
             this.props.updateLibrary();
         });
     }
@@ -31,11 +31,7 @@ class Bookshelf extends Component {
               <ol className="books-grid">
                   {this.props.Books.map( (book) => ( 
                       <Book key={ book.id } 
-                            bookTitle={ book.title } 
-                            bookAuthors={ book.authors }
-                            bookShelf={ book.shelf }
-                            image={ book.imageLinks.thumbnail }
-                            id={ book.id }
+                            book = { book }
                             updateBook={ this.updateBookLibrary }/> 
                       ))}
               </ol>
