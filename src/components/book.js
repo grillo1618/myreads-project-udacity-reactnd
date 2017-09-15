@@ -32,7 +32,7 @@ class Book extends Component {
                 backgroundImage: `url(${this.props.book.imageLinks.thumbnail})`}}>
               </div>
               <div className="book-shelf-changer">
-                <select value={this.props.shelf || this.props.book.shelf} 
+                <select value='none'
                         onChange={this.updateBook}>
                   <option value="none" disabled>Move to...</option>
                   <option value="currentlyReading">Currently Reading</option>
@@ -43,9 +43,9 @@ class Book extends Component {
               </div>
             </div>
             <div className="book-title">{this.props.book.title}</div>
-            <div className="book-authors">{this.props.book.authors.map((author)=>(
+            <div className="book-authors">{this.props.book.authors? this.props.book.authors.map((author)=>(
               <li key={author}>{author}</li>)
-              )}
+              ) : 'Author'}
             </div>
           </div>
         )// render() return.
