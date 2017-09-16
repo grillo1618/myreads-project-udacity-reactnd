@@ -8,7 +8,7 @@ import Book from './book';
 */
 class Searcher extends Component {
     
-    state={
+    state= {
         booksData:[]
     }
 
@@ -21,10 +21,19 @@ class Searcher extends Component {
         const searchQuery=query.trim();
         if(searchQuery) {
             BooksAPI.search(searchQuery, 20).then((result)=>{
+                result.forEach((book)=>{
+                    book.shelf = 'none';
+                });
                 this.setState({booksData: result});
-                console.log(result);
             });
         }
+    }
+    
+    updateSearchBook = (book, shelf)=>{
+        const bookToUpdate = this.state.booksData.findIndex((sbook)=>sbook.id === book.id);
+        let books = this.state.booksData;
+        books[bookToUpdate].shelf = shelf;
+        this.setState({booksData: books});
     }
 
     /**
@@ -56,8 +65,8 @@ class Searcher extends Component {
                     {this.state.booksData.map((book, index)=>(
                             <Book key={book.id}
                             book={book}
-                            shelfName={'none'}
-                            updateBook={this.updateBookLibrary}/>)
+                            updateBook={this.updateBookLibrary}
+                            updateSearchBook={this.updateSearchBook}/>)
                             )}
                 </ol>
             </div>

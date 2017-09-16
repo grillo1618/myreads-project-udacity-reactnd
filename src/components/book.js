@@ -9,30 +9,32 @@ class Book extends Component {
 
     constructor(props) {
       super(props);
-      this.state = {bookShelf: this.props.bookShelf};
+      this.state = {shelf: this.props.book.shelf};
     }
 
      /**
-    * @description Represents a book
+    * @description Updates book data in library.
     * @param {object} event - This, the event that has the value of the change
     * from the search input.
     */
     updateBook=event=>{
       const NEW_SHELF = event.target.value;
+      if(this.props.updateSearchBook) {
+        this.props.updateSearchBook(this.props.book, NEW_SHELF);        
+      }
       this.props.updateBook(this.props.book, NEW_SHELF);
-      this.setState({bookShelf: NEW_SHELF});
+      this.setState({shelf: NEW_SHELF});
     };
 
     render () {
-        return (
+      return (
             <div className="book">
             <div className="book-top">
               <div className="book-cover"
                 style={{backgroundImage:`url(${this.props.book.imageLinks.thumbnail})`}}>
               </div>
               <div className="book-shelf-changer">
-                <select value={ this.props.book.bookShelf || 'none'}
-                        onChange={this.updateBook}>
+                <select value={this.state.shelf} onChange={this.updateBook}>
                   <option value="none" disabled>Move to...</option>
                   <option value="currentlyReading">Currently Reading</option>
                   <option value="wantToRead">Want to Read</option>
