@@ -12,22 +12,22 @@ class Book extends Component {
       this.state = {shelf: this.props.book.shelf};
     }
 
-     /**
+    /**
     * @description Updates book data in library.
     * @param {object} event - This, the event that has the value of the change
     * from the search input.
     */
     updateBook=event=>{
       const NEW_SHELF = event.target.value;
+      this.setState({shelf: NEW_SHELF});
       if(this.props.updateSearchBook) {
         this.props.updateSearchBook(this.props.book, NEW_SHELF);        
       }
       this.props.updateBook(this.props.book, NEW_SHELF);
-      this.setState({shelf: NEW_SHELF});
     };
 
-    render () {
-            return (
+    render(){
+            return(
             <div className="book">
             <div className="book-top">
               <div className="book-cover"

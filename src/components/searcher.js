@@ -7,7 +7,7 @@ import Book from './book';
 * @description Represents the searcher page with book searching features.
 */
 class Searcher extends Component {
-    
+
     state= {
         booksData:[]
     }
@@ -18,29 +18,25 @@ class Searcher extends Component {
     * @param {string} query - Input from user in the searchbar.
     */
     searchBooks=(query)=>{
-
         const searchQuery=query.trim();
-
-        if(searchQuery) {
-            let searchResult;
-
-            BooksAPI.search(searchQuery, 20).then((searchResults)=>{
-                
-                searchResult = searchResults;
-                
-                BooksAPI.getAll().then((results)=>{
-                    searchResult.map((book)=>{          
-                        for(let i = 0; i < results.length; i++){
-                            if(results[i].id === book.id) {
-                                book.shelf = results[i].shelf;
-                                break;
-                            } else {
-                                book.shelf = 'none';
+        if(searchQuery){
+            BooksAPI.getAll().then((library)=>{
+                BooksAPI.search(searchQuery, 20).then((searchResults)=>{
+                    if(!searchResults.error){
+                        searchResults.map((book)=>{
+                            //used for because forEach and map give me problems.
+                            for(let i=0; i<library.length; i++){
+                                if(book.id === library[i].id){
+                                    book.shelf = library[i].shelf;
+                                    break;
+                                } else{
+                                    book.shelf = 'none';
+                                }
                             }
-                        }
-                    });
+                        });
+                    }
+                    this.setState({booksData: searchResults});
                 });
-                this.setState({booksData: searchResult});
             });
         }
     }
@@ -55,14 +51,14 @@ class Searcher extends Component {
     /**
     * @description This method is called from the book's component
                 to update data from the library.
-    * @param {book} book - Book object from book's component. 
+    * @param {book} book - Book object from book's component.
     * @param {string} shelfName - Shelf name where the book is to be moved.
     */
     updateBookLibrary=(book, shelfName)=>{
         BooksAPI.update(book, shelfName);
     }
 
-    render() {
+    render(){
         return(
         <div className="search-books">
             <div className="search-books-bar">

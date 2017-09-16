@@ -4,7 +4,7 @@ import * as BooksAPI from '../BooksAPI';
 import Book from './book';
 
 /**
-* @description Represents a bookshelf that holds books 
+* @description Represents a bookshelf that holds books
                of its respective categories.
 */
 class Bookshelf extends Component {

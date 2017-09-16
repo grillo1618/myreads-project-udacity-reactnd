@@ -20,7 +20,7 @@ class BooksApp extends Component {
         </div>
       </BrowserRouter>
     ) // End return.
-  } //End render() method
-} // End BooksApp class definition
+  } //End render() method.
+} // End BooksApp class definition.
 
 export default BooksApp;
