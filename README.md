@@ -89,4 +89,4 @@ Coming soon...
 
 ## Links
 
-* [Web site](https://udacity.com/)
+* [Udacity's Website](https://udacity.com/)

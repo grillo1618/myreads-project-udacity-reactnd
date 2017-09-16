@@ -22,6 +22,7 @@ class Searcher extends Component {
         if(searchQuery) {
             BooksAPI.search(searchQuery, 20).then((result)=>{
                 this.setState({booksData: result});
+                console.log(result);
             });
         }
     }
