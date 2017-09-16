@@ -14,21 +14,37 @@ class Searcher extends Component {
 
     /**
     * @description Searches books with the BooksAPI's search
-    *              method and sets state.
+    *              method and sets state and then appends the appropiate shelf.
     * @param {string} query - Input from user in the searchbar.
     */
     searchBooks=(query)=>{
+
         const searchQuery=query.trim();
+
         if(searchQuery) {
-            BooksAPI.search(searchQuery, 20).then((result)=>{
-                result.forEach((book)=>{
-                    book.shelf = 'none';
+            let searchResult;
+
+            BooksAPI.search(searchQuery, 20).then((searchResults)=>{
+                
+                searchResult = searchResults;
+                
+                BooksAPI.getAll().then((results)=>{
+                    searchResult.map((book)=>{          
+                        for(let i = 0; i < results.length; i++){
+                            if(results[i].id === book.id) {
+                                book.shelf = results[i].shelf;
+                                break;
+                            } else {
+                                book.shelf = 'none';
+                            }
+                        }
+                    });
                 });
-                this.setState({booksData: result});
+                this.setState({booksData: searchResult});
             });
         }
     }
-    
+
     updateSearchBook = (book, shelf)=>{
         const bookToUpdate = this.state.booksData.findIndex((sbook)=>sbook.id === book.id);
         let books = this.state.booksData;
@@ -62,7 +78,7 @@ class Searcher extends Component {
             </div>
             <div className="search-books-results">
                 <ol className="books-grid">
-                    {this.state.booksData.map((book, index)=>(
+                    {this.state.booksData.map((book)=>(
                             <Book key={book.id}
                             book={book}
                             updateBook={this.updateBookLibrary}
